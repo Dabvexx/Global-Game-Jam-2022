@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenTransitionManager : MonoBehaviour
+public class PlayAudio : MonoBehaviour
 {
     #region Variables
 
-    private GameObject[] exits;
+    public AudioSource audioSource;
+
+    public AudioClip clip;
 
     #endregion Variables
 
     #region Unity Methods
 
-    private void Awake()
+    private void Start()
     {
+        //audioSource.PlayOneShot(clip);
     }
 
     private void Update()

@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Attacks;
 
-public class RespawnPoint : MonoBehaviour
+[RequireComponent(typeof(Attack))]
+public class Shockwave : MonoBehaviour
 {
-    public bool isEnabled = false;
-
-    [SerializeField]
-    private GameObject player;
-
     // Start is called before the first frame update
-    private void Awake()
+    private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
