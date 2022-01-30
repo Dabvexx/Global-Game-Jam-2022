@@ -8,14 +8,21 @@ public class Enemy : MonoBehaviour
 
     public int health = 100;
 
+    public float speed = 5f;
+
     [SerializeField]
     private GameObject player;
+
+    private IEnumerator coroutine;
+
+    private enum MovementStates
+    { wander, spotted, attack }
 
     #endregion Variables
 
     #region Unity Methods
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -33,4 +40,43 @@ public class Enemy : MonoBehaviour
     }
 
     #endregion Unity Methods
+
+    #region Private Methods
+
+    public IEnumerator Wander()
+    {
+        // Wander aimlessly untill spotted
+        if (Random.Range(0, 11) < 5)
+        {
+            // Wander around
+            float translationX = Random.Range(-1f, 1f) * speed * Time.deltaTime;
+            float translationY = Random.Range(-1f, 1f) * speed * Time.deltaTime;
+
+            transform.Translate(Vector2.right * translationX, 0);
+            transform.Translate(Vector2.up * translationY, 0);
+        }
+        else
+        {
+            // Stop moving.
+            // Just do nothing 4head.
+        }
+
+        yield return null;
+    }
+
+    public IEnumerator Spotted()
+    {
+        // Walk towards a certain distance from the player
+
+        yield return null;
+    }
+
+    public IEnumerator attack()
+    {
+        // Call any method that is
+
+        yield return null;
+    }
+
+    #endregion Private Methods
 }

@@ -31,5 +31,9 @@ public class MeleeAI : Melee
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+    }
+
     #endregion Unity Methods
 }

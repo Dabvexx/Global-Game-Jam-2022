@@ -43,14 +43,13 @@ public class Melee : MonoBehaviour
         GameObject meleeTest;
         meleeTest = CastMeleeRayCast();
 
-        if (meleeTest = null)
+        if (meleeTest == null)
         {
             // Missed
             Debug.Log("Player Missed");
             return;
         }
 
-        Debug.Log(meleeTest);
         // If we hit something
         if (MeleeCheckHit(meleeTest.GetComponent<Attack>()))
         {

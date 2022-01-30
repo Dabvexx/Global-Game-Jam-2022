@@ -4,7 +4,6 @@ using UnityEngine;
 using Attacks;
 
 [RequireComponent(typeof(Attack))]
-[RequireComponent(typeof(Bullet))]
 [RequireComponent(typeof(Melee))]
 public class Player : MonoBehaviour
 {
@@ -33,7 +32,7 @@ public class Player : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         float translationX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
