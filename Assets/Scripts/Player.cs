@@ -4,7 +4,7 @@ using UnityEngine;
 using Attacks;
 
 [RequireComponent(typeof(Attack))]
-[RequireComponent(typeof(Melee))]
+[RequireComponent(typeof(Shooter))]
 public class Player : MonoBehaviour
 {
     public int health = 10;
@@ -21,18 +21,33 @@ public class Player : MonoBehaviour
     [SerializeField]
     public Attack attack;
 
+    [SerializeField]
+    public Shooter shooter;
+
+    public Canvas canvas;
+
     // Start is called before the first frame update
     private void Start()
     {
         attack = GetComponent<Attack>();
+        shooter = GetComponent<Shooter>();
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
         if (health <= 0)
         {
             gameObject.SetActive(false);
+
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (var enemy in enemies)
+            {
+                // Make everything stop moving
+                enemy.GetComponent<Enemy>().enabled = false;
+            }
+
+            canvas.enabled = true;
         }
 
         float translationX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
@@ -53,6 +68,11 @@ public class Player : MonoBehaviour
                 attack.attackState = Attack.AttackState.stateRed;
                 sr.sprite = PlayerSprites[0];
             }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            shooter.Shoot(true);
         }
 
         // Rotate towards direction of cursor

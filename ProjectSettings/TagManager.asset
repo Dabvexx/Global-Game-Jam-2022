@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ScreenTransition
+  - Enemy
+  - Wall
+  - Bullet
   layers:
   - Default
   - TransparentFX
